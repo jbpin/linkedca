@@ -22,6 +22,7 @@ message Provisioner {
 		SSHPOP = 9;
 		SCEP = 10;
 		NEBULA = 11;
+		EST = 12;
 	}
 	string id = 1;
 	string authority_id = 2;
@@ -56,6 +57,7 @@ message ProvisionerDetails {
 		SSHPOPProvisioner SSHPOP = 28;
 		SCEPProvisioner SCEP = 29;
 		NebulaProvisioner Nebula = 30;
+		ESTProvisioner EST = 31;
 	}
 }
 
@@ -148,10 +150,11 @@ message ACMEProvisioner {
 		DEVICE_ATTEST_01 = 4;
 	}
 	enum AttestationFormatType {
-		NONE = 0;
-		APPLE = 1;
-		STEP  = 2;
-		TPM   = 3;
+		NONE 			  = 0;
+		APPLE 		  = 1;
+		STEP  		  = 2;
+		TPM   		  = 3;
+		ANDROIDKEY  = 4;
 	}
 	bool force_cn = 1;
 	bool require_eab = 2;
@@ -161,6 +164,7 @@ message ACMEProvisioner {
 	string terms_of_service = 6;
 	string website = 7;
 	repeated string caa_identities = 8;
+	repeated string revoked_certificate_serials = 9;
 }
 
 message X5CProvisioner {
@@ -189,6 +193,17 @@ message SCEPProvisioner {
 	int32 encryption_algorithm_identifier = 6;
 	SCEPDecrypter decrypter = 7;
 	bool exclude_intermediate = 8;
+}
+
+message ESTProvisioner {
+	bool force_cn = 1;
+	bool enable_tls_client_certificate = 2;
+	bool enable_http_basic_auth = 3;
+	int32 minimum_public_key_length = 4;
+	bool include_root = 5;
+	string basic_auth_username = 6;
+	string basic_auth_password = 7;
+	repeated bytes client_certificate_roots = 8;
 }
 
 message NebulaProvisioner {
