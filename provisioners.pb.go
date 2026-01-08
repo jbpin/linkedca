@@ -219,6 +219,7 @@ const (
 	Webhook_AUTHORIZING   Webhook_Kind = 2
 	Webhook_SCEPCHALLENGE Webhook_Kind = 3
 	Webhook_NOTIFYING     Webhook_Kind = 4
+	Webhook_ESTCHALLENGE  Webhook_Kind = 5
 )
 
 // Enum value maps for Webhook_Kind.
@@ -229,6 +230,7 @@ var (
 		2: "AUTHORIZING",
 		3: "SCEPCHALLENGE",
 		4: "NOTIFYING",
+		5: "ESTCHALLENGE",
 	}
 	Webhook_Kind_value = map[string]int32{
 		"NO_KIND":       0,
@@ -236,6 +238,7 @@ var (
 		"AUTHORIZING":   2,
 		"SCEPCHALLENGE": 3,
 		"NOTIFYING":     4,
+		"ESTCHALLENGE":  5,
 	}
 )
 
@@ -2483,7 +2486,7 @@ const file_linkedca_provisioners_proto_rawDesc = "" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"0\n" +
 	"\vBearerToken\x12!\n" +
-	"\fbearer_token\x18\x01 \x01(\tR\vbearerToken\"\xec\x03\n" +
+	"\fbearer_token\x18\x01 \x01(\tR\vbearerToken\"\xfe\x03\n" +
 	"\aWebhook\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x0e\n" +
 	"\x02id\x18\x02 \x01(\tR\x02id\x12\x10\n" +
@@ -2494,13 +2497,14 @@ const file_linkedca_provisioners_proto_rawDesc = "" +
 	"\n" +
 	"basic_auth\x18\a \x01(\v2\x13.linkedca.BasicAuthH\x00R\tbasicAuth\x125\n" +
 	"\x17disable_tls_client_auth\x18\b \x01(\bR\x14disableTlsClientAuth\x127\n" +
-	"\tcert_type\x18\t \x01(\x0e2\x1a.linkedca.Webhook.CertTypeR\bcertType\"U\n" +
+	"\tcert_type\x18\t \x01(\x0e2\x1a.linkedca.Webhook.CertTypeR\bcertType\"g\n" +
 	"\x04Kind\x12\v\n" +
 	"\aNO_KIND\x10\x00\x12\r\n" +
 	"\tENRICHING\x10\x01\x12\x0f\n" +
 	"\vAUTHORIZING\x10\x02\x12\x11\n" +
 	"\rSCEPCHALLENGE\x10\x03\x12\r\n" +
-	"\tNOTIFYING\x10\x04\"&\n" +
+	"\tNOTIFYING\x10\x04\x12\x10\n" +
+	"\fESTCHALLENGE\x10\x05\"&\n" +
 	"\bCertType\x12\a\n" +
 	"\x03ALL\x10\x00\x12\b\n" +
 	"\x04X509\x10\x01\x12\a\n" +
