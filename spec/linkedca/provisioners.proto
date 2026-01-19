@@ -204,6 +204,7 @@ message ESTProvisioner {
 	string basic_auth_username = 6;
 	string basic_auth_password = 7;
 	repeated bytes client_certificate_roots = 8;
+	string forwarded_tls_client_cert_header = 9;
 }
 
 message NebulaProvisioner {

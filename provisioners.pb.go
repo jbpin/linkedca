@@ -1925,17 +1925,18 @@ func (x *SCEPProvisioner) GetExcludeIntermediate() bool {
 }
 
 type ESTProvisioner struct {
-	state                      protoimpl.MessageState `protogen:"open.v1"`
-	ForceCn                    bool                   `protobuf:"varint,1,opt,name=force_cn,json=forceCn,proto3" json:"force_cn,omitempty"`
-	EnableTlsClientCertificate bool                   `protobuf:"varint,2,opt,name=enable_tls_client_certificate,json=enableTlsClientCertificate,proto3" json:"enable_tls_client_certificate,omitempty"`
-	EnableHttpBasicAuth        bool                   `protobuf:"varint,3,opt,name=enable_http_basic_auth,json=enableHttpBasicAuth,proto3" json:"enable_http_basic_auth,omitempty"`
-	MinimumPublicKeyLength     int32                  `protobuf:"varint,4,opt,name=minimum_public_key_length,json=minimumPublicKeyLength,proto3" json:"minimum_public_key_length,omitempty"`
-	IncludeRoot                bool                   `protobuf:"varint,5,opt,name=include_root,json=includeRoot,proto3" json:"include_root,omitempty"`
-	BasicAuthUsername          string                 `protobuf:"bytes,6,opt,name=basic_auth_username,json=basicAuthUsername,proto3" json:"basic_auth_username,omitempty"`
-	BasicAuthPassword          string                 `protobuf:"bytes,7,opt,name=basic_auth_password,json=basicAuthPassword,proto3" json:"basic_auth_password,omitempty"`
-	ClientCertificateRoots     [][]byte               `protobuf:"bytes,8,rep,name=client_certificate_roots,json=clientCertificateRoots,proto3" json:"client_certificate_roots,omitempty"`
-	unknownFields              protoimpl.UnknownFields
-	sizeCache                  protoimpl.SizeCache
+	state                        protoimpl.MessageState `protogen:"open.v1"`
+	ForceCn                      bool                   `protobuf:"varint,1,opt,name=force_cn,json=forceCn,proto3" json:"force_cn,omitempty"`
+	EnableTlsClientCertificate   bool                   `protobuf:"varint,2,opt,name=enable_tls_client_certificate,json=enableTlsClientCertificate,proto3" json:"enable_tls_client_certificate,omitempty"`
+	EnableHttpBasicAuth          bool                   `protobuf:"varint,3,opt,name=enable_http_basic_auth,json=enableHttpBasicAuth,proto3" json:"enable_http_basic_auth,omitempty"`
+	MinimumPublicKeyLength       int32                  `protobuf:"varint,4,opt,name=minimum_public_key_length,json=minimumPublicKeyLength,proto3" json:"minimum_public_key_length,omitempty"`
+	IncludeRoot                  bool                   `protobuf:"varint,5,opt,name=include_root,json=includeRoot,proto3" json:"include_root,omitempty"`
+	BasicAuthUsername            string                 `protobuf:"bytes,6,opt,name=basic_auth_username,json=basicAuthUsername,proto3" json:"basic_auth_username,omitempty"`
+	BasicAuthPassword            string                 `protobuf:"bytes,7,opt,name=basic_auth_password,json=basicAuthPassword,proto3" json:"basic_auth_password,omitempty"`
+	ClientCertificateRoots       [][]byte               `protobuf:"bytes,8,rep,name=client_certificate_roots,json=clientCertificateRoots,proto3" json:"client_certificate_roots,omitempty"`
+	ForwardedTlsClientCertHeader string                 `protobuf:"bytes,9,opt,name=forwarded_tls_client_cert_header,json=forwardedTlsClientCertHeader,proto3" json:"forwarded_tls_client_cert_header,omitempty"`
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
 }
 
 func (x *ESTProvisioner) Reset() {
@@ -2022,6 +2023,13 @@ func (x *ESTProvisioner) GetClientCertificateRoots() [][]byte {
 		return x.ClientCertificateRoots
 	}
 	return nil
+}
+
+func (x *ESTProvisioner) GetForwardedTlsClientCertHeader() string {
+	if x != nil {
+		return x.ForwardedTlsClientCertHeader
+	}
+	return ""
 }
 
 type NebulaProvisioner struct {
@@ -2470,7 +2478,7 @@ const file_linkedca_provisioners_proto_rawDesc = "" +
 	"\finclude_root\x18\x05 \x01(\bR\vincludeRoot\x12F\n" +
 	"\x1fencryption_algorithm_identifier\x18\x06 \x01(\x05R\x1dencryptionAlgorithmIdentifier\x125\n" +
 	"\tdecrypter\x18\a \x01(\v2\x17.linkedca.SCEPDecrypterR\tdecrypter\x121\n" +
-	"\x14exclude_intermediate\x18\b \x01(\bR\x13excludeIntermediate\"\x9b\x03\n" +
+	"\x14exclude_intermediate\x18\b \x01(\bR\x13excludeIntermediate\"\xe3\x03\n" +
 	"\x0eESTProvisioner\x12\x19\n" +
 	"\bforce_cn\x18\x01 \x01(\bR\aforceCn\x12A\n" +
 	"\x1denable_tls_client_certificate\x18\x02 \x01(\bR\x1aenableTlsClientCertificate\x123\n" +
@@ -2479,7 +2487,8 @@ const file_linkedca_provisioners_proto_rawDesc = "" +
 	"\finclude_root\x18\x05 \x01(\bR\vincludeRoot\x12.\n" +
 	"\x13basic_auth_username\x18\x06 \x01(\tR\x11basicAuthUsername\x12.\n" +
 	"\x13basic_auth_password\x18\a \x01(\tR\x11basicAuthPassword\x128\n" +
-	"\x18client_certificate_roots\x18\b \x03(\fR\x16clientCertificateRoots\")\n" +
+	"\x18client_certificate_roots\x18\b \x03(\fR\x16clientCertificateRoots\x12F\n" +
+	" forwarded_tls_client_cert_header\x18\t \x01(\tR\x1cforwardedTlsClientCertHeader\")\n" +
 	"\x11NebulaProvisioner\x12\x14\n" +
 	"\x05roots\x18\x01 \x03(\fR\x05roots\"C\n" +
 	"\tBasicAuth\x12\x1a\n" +
